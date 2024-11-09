@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
+    "lib": ["ES2019", "DOM"],
+    "typeRoots": []
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

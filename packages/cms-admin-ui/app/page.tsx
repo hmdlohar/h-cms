@@ -2,15 +2,18 @@
 
 import { ClientSDK } from "@/services/ClientSDK";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import Image from "next/image";
 
 export default function Home() {
   let q = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["pages"],
     queryFn: () => {
       return ClientSDK.call({
-        collection: "post",
+        collection: "pages",
         method: "list",
+        args: {
+          page: 1,
+          perPage: 10,
+        },
       });
     },
   });
@@ -18,7 +21,7 @@ export default function Home() {
   const action = useMutation({
     mutationFn: async (args: any) => {
       let result = await ClientSDK.call({
-        collection: "post",
+        collection: "pages",
         method: "create",
         args,
       });
@@ -33,7 +36,6 @@ export default function Home() {
             title: "Test" + Date.now(),
             slug: "test" + Date.now(),
             bodyhtml: "Test" + Date.now(),
-            tags: "test,test2",
           })
         }
       >
