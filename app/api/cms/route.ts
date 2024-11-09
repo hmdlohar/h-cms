@@ -1,4 +1,5 @@
 import { getCollectionMethod } from "@/lib/collections";
+import { parseErrorString } from "@/utils/parseErrorString";
 
 export async function POST(request: Request) {
     try {
@@ -13,7 +14,7 @@ export async function POST(request: Request) {
             },
         });
     } catch (error) {
-        return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+        return new Response(JSON.stringify({ error: `Internal Server Error: ${parseErrorString(error)}` }), {
             status: 500,
             headers: {
                 'Content-Type': 'application/json',
