@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "deploy:admin-ui": "yarn workspace cms-admin-ui build && yarn workspace cms-admin-ui migrate:latest"
+    "deploy:admin-ui": "yarn workspace cms-admin-ui build && yarn workspace cms-admin-ui migrate"
   },
   "devDependencies": {
     "typescript": "^5.3.3"

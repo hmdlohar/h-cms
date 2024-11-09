@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "tsx ./scripts/migrate.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.59.20",
@@ -29,8 +30,5 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "tsx": "^4.19.0"
-  },
-  "plugins": [
-    "@hcms/plugin-pages"
-  ]
+  }
 }
