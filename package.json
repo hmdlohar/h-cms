@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "build:lib": "yarn workspace @hcms/core build && yarn workspace @hcms/plugin-pages build",
-    "deploy:admin-ui": "yarn workspace @hcms/admin-ui build && yarn workspace @hcms/admin-ui migrate"
+    "deploy:admin-ui": "yarn build:lib && yarn workspace @hcms/admin-ui build && yarn workspace @hcms/admin-ui migrate"
   },
   "devDependencies": {
     "typescript": "^5.3.3"
