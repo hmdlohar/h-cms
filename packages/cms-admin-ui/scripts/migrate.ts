@@ -2,6 +2,8 @@ import "dotenv/config";
 import { getCollections } from "@/lib/collections";
 import { db } from "@/lib/db";
 
+const command = process.argv[2];
+
 let collections = getCollections();
 let objMigration: { [key: string]: any } = {};
 for (const collection of Object.values(collections)) {
@@ -34,5 +36,16 @@ async function main() {
   console.log("Migration done", result);
   process.exit(0);
 }
+async function rollback() {
+  let result = await db.migrate.rollback({
+    migrationSource: new MyMigrationSource(),
+  });
+  console.log("Rollback done", result);
+  process.exit(0);
+}
 
-main();
+if (command === "rollback") {
+  rollback();
+} else {
+  main();
+}

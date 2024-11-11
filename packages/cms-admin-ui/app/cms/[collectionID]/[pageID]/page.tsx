@@ -1,4 +1,3 @@
-import { getCollection, getCollectionMenuItem } from "@/lib/collections";
 import CollectionPage from "./CollectionPage";
 
 interface IMenuPagesProps {
