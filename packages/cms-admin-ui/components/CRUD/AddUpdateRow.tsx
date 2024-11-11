@@ -1,12 +1,22 @@
-import { ICollectionMenuItem } from "@hcms/core";
+import RichTextField from "@/common/form-fields/RichTextField";
+import { ClientSDK, ICollectionMenuItem } from "@hcms/core";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Grid } from "@mui/material";
+import {
+  Alert,
+  Button,
+  CircularProgress,
+  DialogActions,
+  FormHelperText,
+  Grid,
+} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import { useMutation } from "@tanstack/react-query";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import { Case, Switch } from "react-if";
 import * as yup from "yup";
 
 interface IAddUpdateRowProps {
@@ -14,8 +24,32 @@ interface IAddUpdateRowProps {
   onClose: () => void;
   menuItem: ICollectionMenuItem;
   currentRow?: any;
+  collectionID: string;
+  onComplete: () => void;
 }
 export default function AddUpdateRow(props: IAddUpdateRowProps) {
+  const action = useMutation({
+    mutationFn: async (values: any) => {
+      if (props.currentRow) {
+        await ClientSDK.call({
+          collection: props.collectionID,
+          method: "update",
+          args: {
+            id: props.currentRow.id,
+            values,
+          },
+        });
+      } else {
+        await ClientSDK.call({
+          collection: props.collectionID,
+          method: "create",
+          args: values,
+        });
+      }
+      props.onComplete();
+    },
+  });
+
   let objFields: any = {};
   for (let key in props.menuItem.CRUDSchema?.columns ?? {}) {
     let value = props.menuItem.CRUDSchema?.columns[key];
@@ -51,22 +85,74 @@ export default function AddUpdateRow(props: IAddUpdateRowProps) {
           </div>
         </DialogTitle>
         <DialogContent>
-          <Grid container spacing={2}>
-            {Object.entries(props.menuItem.CRUDSchema?.columns ?? {}).map(
-              ([key, value]) => {
-                return (
-                  <Grid item xs={12} sm={6} key={key}>
-                    <TextField
-                      fullWidth
-                      label={value.label}
-                      {...objForm.register(key)}
-                    />
-                  </Grid>
-                );
-              }
-            )}
-          </Grid>
+          <form
+            id="addUpdateForm"
+            onSubmit={objForm.handleSubmit((values) => {
+              console.log("values", values);
+              action.mutate(values);
+            })}
+          >
+            <Grid container spacing={2}>
+              {Object.entries(props.menuItem.CRUDSchema?.columns ?? {}).map(
+                ([key, value]) => {
+                  return (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={value?.type === "richText" ? 12 : 6}
+                      key={key}
+                    >
+                      <Controller
+                        control={objForm.control}
+                        name={key}
+                        render={({ field, fieldState }) => (
+                          <>
+                            <Switch>
+                              <Case condition={value?.type === "string"}>
+                                <TextField
+                                  fullWidth
+                                  label={value.label}
+                                  {...field}
+                                />
+                              </Case>
+                              <Case condition={value?.type === "richText"}>
+                                <RichTextField
+                                  label={value.label}
+                                  value={field.value}
+                                  onChange={(value) => field.onChange(value)}
+                                />
+                              </Case>
+                            </Switch>
+                            {fieldState.error && (
+                              <FormHelperText error>
+                                {fieldState.error.message}
+                              </FormHelperText>
+                            )}
+                          </>
+                        )}
+                      />
+                    </Grid>
+                  );
+                }
+              )}
+            </Grid>
+          </form>
         </DialogContent>
+        <DialogActions>
+          {action.isPending && <CircularProgress />}
+          {action.isError && (
+            <Alert severity="error">{action.error.message}</Alert>
+          )}
+          <Button onClick={props.onClose}>Cancel</Button>
+          <Button
+            type="submit"
+            variant="contained"
+            form="addUpdateForm"
+            disabled={action.isPending}
+          >
+            Save
+          </Button>
+        </DialogActions>
       </Dialog>
     </div>
   );

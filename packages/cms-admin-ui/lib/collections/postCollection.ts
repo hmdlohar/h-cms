@@ -25,6 +25,7 @@ export function register(): { [collectionID: string]: ICollection } {
         list: {
           label: "All Posts",
           type: "CRUDTable",
+          icon: "article",
           CRUDSchema: {
             columns: {
               title: {
@@ -37,7 +38,7 @@ export function register(): { [collectionID: string]: ICollection } {
                 label: "Slug",
                 required: true,
               },
-              content: {
+              bodyhtml: {
                 type: "richText",
                 label: "Content",
                 required: true,

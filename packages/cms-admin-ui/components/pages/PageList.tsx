@@ -1,25 +1,23 @@
+"use client";
 import React, { useState } from "react";
 import useAPI from "../../hooks/useAPI";
 import DataTable from "react-data-table-component";
 import { ClientSDK, ICollectionMenuItem } from "@hcms/core";
 import { useQuery } from "@tanstack/react-query";
 import Alert from "@mui/material/Alert";
-import AddUpdateRow from "./AddUpdateRow";
 import Button from "@mui/material/Button";
+import AddUpdatePage from "./AddUpdatePage";
 
-interface ICRUDTableProps {
-  collectionID: string;
-  menuItem: ICollectionMenuItem;
-}
-export default function CRUDTable(props: ICRUDTableProps) {
+interface IPageListProps {}
+export default function PageList(props: IPageListProps) {
   const [currentRow, setCurrentRow] = useState<any>(null);
   const [open, setOpen] = useState(false);
 
   let q = useQuery({
-    queryKey: ["crud", props.collectionID, "list", props.menuItem.label],
+    queryKey: ["crud", "page", "list", "page"],
     queryFn: async () => {
       let result = await ClientSDK.call({
-        collection: props.collectionID,
+        collection: "page",
         method: "list",
         args: {
           page: 1,
@@ -39,7 +37,7 @@ export default function CRUDTable(props: ICRUDTableProps) {
           alignItems: "center",
         }}
       >
-        <h1>{props.menuItem.label}</h1>
+        <h1>Pages</h1>
         <Button
           onClick={() => {
             setOpen(true);
@@ -52,7 +50,7 @@ export default function CRUDTable(props: ICRUDTableProps) {
       {q.isError && <Alert severity="error">{q.error.message}</Alert>}
       <DataTable
         data={q.data ?? []}
-        progressPending={q.isLoading}
+        progressPending={q.isFetching}
         columns={[
           {
             name: "Actions",
@@ -77,7 +75,7 @@ export default function CRUDTable(props: ICRUDTableProps) {
                       )
                     ) {
                       await ClientSDK.call({
-                        collection: props.collectionID,
+                        collection: "page",
                         method: "delete",
                         args: { id: row.id },
                       });
@@ -90,21 +88,21 @@ export default function CRUDTable(props: ICRUDTableProps) {
               </>
             ),
           },
-          ...Object.entries(props.menuItem.CRUDSchema?.columns ?? {}).map(
-            ([key, value]) => ({
-              name: value.label,
-              selector: (row: any) => String(row[key] ?? ""), // Convert to string
-            })
-          ),
+          {
+            name: "Title",
+            selector: (row: any) => row.title,
+          },
+          {
+            name: "Slug",
+            selector: (row: any) => row.slug,
+          },
         ]}
       />
       {open && (
-        <AddUpdateRow
+        <AddUpdatePage
           isOpen={open}
           onClose={() => setOpen(false)}
-          menuItem={props.menuItem}
           currentRow={currentRow}
-          collectionID={props.collectionID}
           onComplete={() => {
             setOpen(false);
             setCurrentRow(null);

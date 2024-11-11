@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import QueryProvider from "../QueryProvider";
+import QueryProvider from "./QueryProvider";
 import MenuList from "./MenuList";
 
 interface IMainLayoutProps {

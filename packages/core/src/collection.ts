@@ -17,6 +17,7 @@ export interface ICRUDColumn {
     label: string;
     required: boolean;
     dbFieldName?: string;
+    hideFromList?: boolean;
   };
 }
 

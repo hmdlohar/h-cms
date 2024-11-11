@@ -1,18 +1,21 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+import React from "react";
+import MainLayout from "./MainLayout";
 import "./globals.css";
-import QueryProvider from "./QueryProvider";
-
-export default function RootLayout({
-  children,
-}: Readonly<{
+interface ICMSLayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+export default function CMSLayout(props: ICMSLayoutProps) {
   return (
-    <html lang="en">
-      <body>
-        <QueryProvider>{children}</QueryProvider>
-      </body>
+    <html>
+      <head>
+        <title>CMS Admin</title>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
+      </head>
+      <body>{props.children}</body>
     </html>
   );
 }

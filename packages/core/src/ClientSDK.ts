@@ -9,6 +9,10 @@ export class ClientSDK {
             method: "POST",
             body: JSON.stringify(io),
         });
-        return await response.json();
+        let result = await response.json();
+        if (result.error) {
+            throw new Error(result.error);
+        }
+        return result.result;
     }
 }

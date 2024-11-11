@@ -1,3 +1,4 @@
+import MainLayout from "@/app/MainLayout";
 import CollectionPage from "./CollectionPage";
 
 interface IMenuPagesProps {
@@ -11,12 +12,12 @@ export default async function MenuPages(props: IMenuPagesProps) {
   // let collection = await getCollection(collectionID);
   // let menuItem = await getCollectionMenuItem(collectionID, pageID);
   return (
-    <div>
+    <MainLayout>
       <CollectionPage
         collectionID={collectionID}
         pageID={pageID}
         // menuItem={menuItem}
       />
-    </div>
+    </MainLayout>
   );
 }
