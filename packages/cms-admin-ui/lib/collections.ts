@@ -1,11 +1,11 @@
 import { ICollection } from "@hcms/core";
-import { register as registerPages } from "@hcms/plugin-pages";
+import { register as registerUI } from "@hcms/plugin-ui";
 
 export function getCollections(): {
   [collectionID: string]: ICollection;
 } {
   return {
-    ...registerPages(),
+    ...registerUI(),
   };
 }
 
@@ -15,4 +15,11 @@ export function getCollection(collectionID: string) {
 
 export function getCollectionMethod(collectionID: string, methodName: string) {
   return getCollection(collectionID)?.methods[methodName];
+}
+
+export function getCollectionMenuItem(
+  collectionID: string,
+  menuItemName: string
+) {
+  return getCollection(collectionID)?.menuItems?.[menuItemName];
 }

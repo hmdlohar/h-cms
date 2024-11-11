@@ -1,6 +1,7 @@
 "use client";
 
-import { ClientSDK } from "@/services/ClientSDK";
+import { ClientSDK } from "@hcms/core";
+import PagesPage from "@hcms/plugin-ui/src/components/PagesPage";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export default function Home() {
@@ -41,6 +42,7 @@ export default function Home() {
       >
         Create
       </button>
+      <PagesPage />
       <button onClick={() => q.refetch()}>Refetch</button>
     </div>
   );
