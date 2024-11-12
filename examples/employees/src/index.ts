@@ -12,7 +12,6 @@ export function register(): { [collectionID: string]: ICollection } {
       menuItems: {
         employee: {
           label: "Employee",
-          type: "CRUDTable",
           CRUDSchema: {
             columns: {
               name: {

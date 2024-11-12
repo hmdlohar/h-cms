@@ -10,15 +10,21 @@ interface IMainLayoutProps {
 export default function MainLayout(props: IMainLayoutProps) {
   return (
     <QueryProvider>
-      <div className="flex min-h-screen">
+      <div style={{ display: "flex", minHeight: "100vh" }}>
         {/* Left sidebar */}
-        <div className="w-64 border-r border-gray-200 bg-white">
-          <div className="h-full overflow-y-auto">
+        <div
+          style={{
+            width: "16rem",
+            borderRight: "1px solid #e5e7eb",
+            backgroundColor: "#ffffff",
+          }}
+        >
+          <div style={{ height: "100%", overflowY: "auto" }}>
             <MenuList />
           </div>
         </div>
         {/* Main content */}
-        <div className="flex-1 p-8">{props.children}</div>
+        <div style={{ flex: 1, padding: "2rem" }}>{props.children}</div>
       </div>
     </QueryProvider>
   );

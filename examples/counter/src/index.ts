@@ -58,7 +58,7 @@ export function register(): { [collectionID: string]: ICollection } {
       menuItems: {
         counter: {
           label: "Counter",
-          icon: "counter_1",
+          icon: "add_circle",
           component: React.lazy(() => import("./components/CounterPage")),
         },
       },

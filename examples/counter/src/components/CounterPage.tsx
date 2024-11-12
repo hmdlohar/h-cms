@@ -36,11 +36,23 @@ export default function CounterPage(props: ICounterPageProps) {
   });
 
   return (
-    <div className="flex flex-col gap-4">
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       Counter will fetch count from database.
-      <div className="flex gap-4 items-center justify-center">
+      <div
+        style={{
+          display: "flex",
+          gap: "16px",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <button
-          className="bg-blue-500 text-white p-2 rounded-md"
+          style={{
+            backgroundColor: "#3b82f6",
+            color: "white",
+            padding: "8px",
+            borderRadius: "8px",
+          }}
           onClick={dec.refetch}
         >
           Decrease Count
@@ -48,12 +60,23 @@ export default function CounterPage(props: ICounterPageProps) {
 
         {(count.loading || inc.loading || dec.loading) && <div>Loading...</div>}
         {count.data && (
-          <div className="text-2xl font-bold text-center">
+          <div
+            style={{
+              fontSize: "24px",
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
+          >
             {count.data?.count}
           </div>
         )}
         <button
-          className="bg-blue-500 text-white p-2 rounded-md"
+          style={{
+            backgroundColor: "#3b82f6",
+            color: "white",
+            padding: "8px",
+            borderRadius: "8px",
+          }}
           onClick={inc.refetch}
         >
           Increase Count
