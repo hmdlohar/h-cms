@@ -8,6 +8,15 @@ export function register(): { [collectionID: string]: ICollection } {
       collectionID: "page",
       methods: {
         ...createDefaultCURD("pages"),
+        getWithSlug: {
+          fn: async (db, args) => {
+            return await db
+              .select()
+              .from("pages")
+              .where("slug", args.slug)
+              .first();
+          },
+        },
       },
       migrations: {
         create_page: {

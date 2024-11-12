@@ -8,6 +8,11 @@ export function register(): { [collectionID: string]: ICollection } {
       collectionID: "post",
       methods: {
         ...createDefaultCURD("posts"),
+        getWithSlug: {
+          fn: async (db, args) => {
+            return await db.select().from("posts").where("slug", args.slug).first();
+          },
+        },
       },
       migrations: {
         create_post: {

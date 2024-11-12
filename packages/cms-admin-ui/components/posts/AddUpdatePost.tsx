@@ -8,6 +8,9 @@ import {
   DialogActions,
   FormHelperText,
   Grid,
+  Icon,
+  Tooltip,
+  Typography,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -52,7 +55,7 @@ export default function AddUpdatePost(props: IAddUpdatePostProps) {
     },
     resolver: yupResolver(schema),
   });
-  console.log(objForm.formState.defaultValues);
+
   return (
     <div>
       <Dialog
@@ -91,6 +94,20 @@ export default function AddUpdatePost(props: IAddUpdatePostProps) {
                     {objForm.formState.errors.title?.message?.toString()}
                   </FormHelperText>
                 )}
+              </Grid>
+              <Grid item xs={12}>
+                <Tooltip title="Preview">
+                  <Typography
+                    color="primary"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      window.open(`/blog/${objForm.watch("slug")}`, "_blank");
+                    }}
+                  >
+                    {window.location.origin}/blog/{objForm.watch("slug")}
+                    <Icon>link</Icon>
+                  </Typography>
+                </Tooltip>
               </Grid>
               <Grid item xs={12}>
                 <TextField

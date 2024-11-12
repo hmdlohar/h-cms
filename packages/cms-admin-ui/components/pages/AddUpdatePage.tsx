@@ -8,6 +8,8 @@ import {
   DialogActions,
   FormHelperText,
   Grid,
+  Tooltip,
+  Typography,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -91,6 +93,19 @@ export default function AddUpdatePage(props: IAddUpdatePageProps) {
                     {objForm.formState.errors.title?.message?.toString()}
                   </FormHelperText>
                 )}
+              </Grid>
+              <Grid item xs={12}>
+                <Tooltip title="Preview">
+                  <Typography
+                    color="primary"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      window.open(`/pages/${objForm.watch("slug")}`, "_blank");
+                    }}
+                  >
+                    {window.location.origin}/pages/{objForm.watch("slug")}
+                  </Typography>
+                </Tooltip>
               </Grid>
               <Grid item xs={12}>
                 <TextField
