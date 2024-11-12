@@ -29,7 +29,7 @@ const packageJson = {
         "watch": "rollup -c -w"
     },
     "dependencies": {
-        "hcms-core": "^0.0.3",
+        "hcms-core": "latest",
         "knex": "3.1.0",
         "react": "^18.3.1"
     },
