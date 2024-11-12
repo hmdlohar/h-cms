@@ -1,5 +1,5 @@
 import RichTextField from "@/common/form-fields/RichTextField";
-import { ClientSDK, ICollectionMenuItem } from "@hcms/core";
+import { ClientSDK, ICollectionMenuItem } from "hcms-core";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Alert,

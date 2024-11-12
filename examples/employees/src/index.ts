@@ -1,4 +1,4 @@
-import { createDefaultCURD, ICollection } from "@hcms/core";
+import { createDefaultCURD, ICollection } from "hcms-core";
 import { Knex } from "knex";
 
 export function register(): { [collectionID: string]: ICollection } {

@@ -1,4 +1,4 @@
-import { ICollection } from "@hcms/core";
+import { ICollection } from "hcms-core";
 import { Knex } from "knex";
 import React from "react";
 

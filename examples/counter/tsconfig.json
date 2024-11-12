@@ -5,12 +5,13 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "composite": true,
     "lib": ["ES2019", "DOM"],
     "typeRoots": [],
     "esModuleInterop": true,
-    "jsx": "react"
+    "jsx": "react",
+    "moduleResolution": "Node",
+    "module": "ES2020"
   },
-  "include": ["src"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "dist"]
 }

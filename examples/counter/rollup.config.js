@@ -11,15 +11,15 @@ export default [
     input: "src/index.ts",
     output: [
       {
-        dir: "dist",
+        dir:"dist",
         format: "cjs",
         sourcemap: true,
       },
-      //   {
-      //     dir: "dist",
-      //     format: "esm",
-      //     sourcemap: true,
-      //   },
+      // {
+      //   file: packageJson.module,
+      //   format: "esm",
+      //   sourcemap: true,
+      // },
     ],
     plugins: [
       resolve(),
@@ -32,9 +32,9 @@ export default [
     ],
     external: ["react"],
   },
-  // {
-  //   input: "dist/esm/index.d.ts",
-  //   output: [{ file: "dist/index.d.ts", format: "esm" }],
-  //   plugins: [dts()],
-  // },
+  {
+    input: ["src/index.ts"],
+    output: [{ file: "dist/index.d.ts", format: "cjs" }],
+    plugins: [dts()]
+  },
 ];

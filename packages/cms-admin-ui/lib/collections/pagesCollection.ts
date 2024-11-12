@@ -1,5 +1,5 @@
 import PageList from "@/components/pages/PageList";
-import { createDefaultCURD, ICollection } from "@hcms/core";
+import { createDefaultCURD, ICollection } from "hcms-core";
 
 export function register(): { [collectionID: string]: ICollection } {
   return {

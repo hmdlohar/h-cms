@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import useAPI from "../../hooks/useAPI";
 import DataTable from "react-data-table-component";
-import { ClientSDK, ICollectionMenuItem } from "@hcms/core";
+import { ClientSDK, ICollectionMenuItem } from "hcms-core";
 import { useQuery } from "@tanstack/react-query";
 import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";

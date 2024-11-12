@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build:lib": "yarn workspace @hcms/core build",
+    "build:lib": "yarn workspace hcms-core build",
     "deploy:admin-ui": "yarn build:lib && yarn workspace @hcms/admin-ui build && yarn workspace @hcms/admin-ui migrate"
   },
   "devDependencies": {

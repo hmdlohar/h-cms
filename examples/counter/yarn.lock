@@ -853,12 +853,6 @@
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
 
-"@hcms/core@https://github.com/hmdlohar/h-cms/raw/refs/heads/main/builds/hcms-core.tgz":
-  version "0.0.1"
-  resolved "https://github.com/hmdlohar/h-cms/raw/refs/heads/main/builds/hcms-core.tgz#199226f7ba62cc83538fe58e6b0d8a9729ccc850"
-  dependencies:
-    knex "3.1.0"
-
 "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.5.tgz#dcce6aff74bdf6dad1a95802b69b04a2fcb1fb36"
@@ -1234,6 +1228,13 @@ hasown@^2.0.2:
   integrity sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==
   dependencies:
     function-bind "^1.1.2"
+
+hcms-core@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/hcms-core/-/hcms-core-0.0.1.tgz#0e9f54bb14e1c9939f0850870a324a97f746dd9e"
+  integrity sha512-hejhOg5ne8mX70s9l9uALcA5sTGN+jbPjlTbelAAn0OuxYB4SU1zMgNGZMCjv+FyF8bNg614UxQA57TDjNCD+A==
+  dependencies:
+    knex "3.1.0"
 
 iconv-lite@^0.4.5:
   version "0.4.24"

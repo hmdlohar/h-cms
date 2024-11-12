@@ -1,32 +1,31 @@
 {
-  "name": "counter",
-  "version": "1.0.0",
+  "name": "hcms-plugin-counter",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "rollup -c",
-    "watch": "rollup -c -w",
-    "pkg": "yarn pack --filename ../../builds/hcms-counter.tgz"
+    "watch": "rollup -c -w"
   },
   "dependencies": {
-    "@hcms/core": "https://github.com/hmdlohar/h-cms/raw/refs/heads/main/builds/hcms-core.tgz",
-    "react": "^18.3.1",
-    "knex": "3.1.0"
+    "hcms-core": "^0.0.1",
+    "knex": "3.1.0",
+    "react": "^18.3.1"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^28.0.1",
-    "@rollup/plugin-node-resolve": "^15.3.0",
-    "@rollup/plugin-typescript": "^12.1.1",
-    "typescript": "^5.6.3",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-jsx": "^1.0.3",
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
     "@types/react": "18.0.21",
     "rollup": "^2.70.2",
-    "rollup-plugin-dts": "^4.2.1"
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-dts": "^4.2.1",
+    "rollup-plugin-jsx": "^1.0.3",
+    "typescript": "^5.6.3"
   }
 }

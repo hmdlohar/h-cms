@@ -1,6 +1,6 @@
 import React from "react";
 import useAPI from "../hooks/useAPI";
-import { ClientSDK } from "@hcms/core";
+import { ClientSDK } from "hcms-core";
 
 interface ICounterPageProps {}
 export default function CounterPage(props: ICounterPageProps) {

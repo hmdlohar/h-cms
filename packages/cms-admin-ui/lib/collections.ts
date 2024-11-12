@@ -1,8 +1,8 @@
-import { ICollection } from "@hcms/core";
+import { ICollection } from "hcms-core";
 import { register as registerPost } from "./collections/postCollection";
 import { register as registerPages } from "./collections/pagesCollection";
-import { register as registerCounter } from "counter";
-import { register as registerEmployees } from "@hcms/plugin-employees";
+import { register as registerCounter } from "hcms-plugin-counter";
+import { register as registerEmployees } from "hcms-plugin-employees";
 
 export function getCollections(): {
   [collectionID: string]: ICollection;
