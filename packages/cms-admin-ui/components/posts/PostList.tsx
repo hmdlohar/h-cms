@@ -20,7 +20,7 @@ export default function PostList(props: IPageListProps) {
       return result ?? [];
     },
   });
-  console.log(q.data, q.error);
+  
   return (
     <div style={{ marginBottom: 20 }}>
       <div
@@ -42,6 +42,9 @@ export default function PostList(props: IPageListProps) {
       </div>
       {q.isError && <Alert severity="error">{q.error.message}</Alert>}
       <DataTable
+        pagination
+        paginationPerPage={10}
+        paginationRowsPerPageOptions={[10, 25, 50, 100]}
         data={q.data ?? []}
         progressPending={q.isFetching}
         columns={[
@@ -80,10 +83,18 @@ export default function PostList(props: IPageListProps) {
           {
             name: "Title",
             selector: (row: any) => row.title,
+            sortable: true,
           },
           {
             name: "Slug",
             selector: (row: any) => row.slug,
+            sortable: true,
+          },
+          {
+            name: "Created At",
+            selector: (row: any) => row.created_at,
+            cell: (row: any) => new Date(row.created_at).toLocaleString(),
+            sortable: true,
           },
         ]}
       />

@@ -8,8 +8,7 @@ export type ICRUDColumnType =
   | "string"
   | "richText"
   | "number"
-  | "boolean"
-  | "custom";
+  | "boolean";
 
 export interface ICRUDColumn {
   [key: string]: {

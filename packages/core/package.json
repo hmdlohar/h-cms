@@ -1,9 +1,13 @@
 {
   "name": "hcms-core",
-  "version": "0.0.3",
+  "version": "0.0.7",
   "private": false,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "hcms-core": "./dist/bin/index.js",
+    "hcms": "./dist/bin/index.js"
+  },
   "author": "Hamid Lohar",
   "description": "Core package for hcms",
   "repository": "https://github.com/hmdlohar/h-cms",

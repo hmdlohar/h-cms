@@ -4,8 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Alert,
   Button,
+  Checkbox,
   CircularProgress,
   DialogActions,
+  FormControlLabel,
   FormHelperText,
   Grid,
 } from "@mui/material";
@@ -97,8 +99,16 @@ export default function AddUpdateRow(props: IAddUpdateRowProps) {
                         render={({ field, fieldState }) => (
                           <>
                             <Switch>
-                              <Case condition={value?.type === "string"}>
+                              <Case
+                                condition={
+                                  value?.type === "string" ||
+                                  value?.type === "number"
+                                }
+                              >
                                 <TextField
+                                  type={
+                                    value?.type === "number" ? "number" : "text"
+                                  }
                                   fullWidth
                                   label={value.label}
                                   {...field}
@@ -109,6 +119,17 @@ export default function AddUpdateRow(props: IAddUpdateRowProps) {
                                   label={value.label}
                                   value={field.value}
                                   onChange={(value) => field.onChange(value)}
+                                />
+                              </Case>
+                              <Case condition={value?.type === "boolean"}>
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={field.value}
+                                      onChange={field.onChange}
+                                    />
+                                  }
+                                  label={value.label}
                                 />
                               </Case>
                             </Switch>

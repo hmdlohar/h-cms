@@ -43,6 +43,9 @@ export default function CRUDTable(props: ICRUDTableProps) {
       </div>
       {q.isError && <Alert severity="error">{q.error.message}</Alert>}
       <DataTable
+        pagination
+        paginationPerPage={10}
+        paginationRowsPerPageOptions={[10, 25, 50, 100]}
         data={q.data ?? []}
         progressPending={q.isLoading}
         columns={[
@@ -80,10 +83,23 @@ export default function CRUDTable(props: ICRUDTableProps) {
             ),
           },
           ...Object.entries(props.menuItem.CRUDSchema?.columns ?? {}).map(
-            ([key, value]) => ({
-              name: value.label,
-              selector: (row: any) => String(row[key] ?? ""), // Convert to string
-            })
+            ([key, value]) => {
+              return {
+                name: value.label,
+                selector: (row: any) => String(row[key] ?? ""),
+                cell: (row: any) => {
+                  if (value.type === "boolean") {
+                    return row[key] ? "Yes" : "No";
+                  } else if (value.type === "richText") {
+                    return (
+                      <div dangerouslySetInnerHTML={{ __html: row[key] }} />
+                    );
+                  }
+                  return String(row[key] ?? "");
+                }, // Convert to string
+                sortable: true,
+              };
+            }
           ),
         ]}
       />
