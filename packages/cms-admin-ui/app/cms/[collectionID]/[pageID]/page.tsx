@@ -4,10 +4,10 @@ import CollectionPage from "./CollectionPage";
 import { use } from "react";
 
 interface IMenuPagesProps {
-  params: {
+  params: Promise<{
     collectionID: string;
     pageID: string;
-  };
+  }>;
 }
 export default function MenuPages(props: IMenuPagesProps) {
   const { collectionID, pageID } = use<any>(props.params as any);
