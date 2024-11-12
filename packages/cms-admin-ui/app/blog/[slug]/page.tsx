@@ -5,9 +5,7 @@ import React from "react";
 import { Container, Typography, Box } from "@mui/material";
 
 interface IpageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 export default async function page(props: IpageProps) {
   const { slug } = await props.params;
