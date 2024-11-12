@@ -1,0 +1,13 @@
+# Include everything in dist
+!dist
+!dist/**/*
+package.json
+tsconfig.json
+
+# Exclude everything else
+/*
+/*/
+
+# But keep some files
+!README.md
+!LICENSE

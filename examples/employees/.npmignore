@@ -1,0 +1,14 @@
+# Include everything in dist
+!dist
+!dist/**/*
+package.json
+tsconfig.json
+rollup.config.js
+
+# Exclude everything else
+/*
+/*/
+
+# But keep some files
+!README.md
+!LICENSE

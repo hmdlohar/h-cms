@@ -1,5 +1,7 @@
+"use client";
 import MainLayout from "@/app/MainLayout";
 import CollectionPage from "./CollectionPage";
+import { use } from "react";
 
 interface IMenuPagesProps {
   params: {
@@ -7,8 +9,8 @@ interface IMenuPagesProps {
     pageID: string;
   };
 }
-export default async function MenuPages(props: IMenuPagesProps) {
-  const { collectionID, pageID } = await props.params;
+export default function MenuPages(props: IMenuPagesProps) {
+  const { collectionID, pageID } = use<any>(props.params as any);
   // let collection = await getCollection(collectionID);
   // let menuItem = await getCollectionMenuItem(collectionID, pageID);
   return (

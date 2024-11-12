@@ -1,14 +1,17 @@
 import { ICollection } from "@hcms/core";
-import { register as registerUI } from "@hcms/plugin-ui";
 import { register as registerPost } from "./collections/postCollection";
 import { register as registerPages } from "./collections/pagesCollection";
+import { register as registerCounter } from "counter";
+import { register as registerEmployees } from "@hcms/plugin-employees";
+
 export function getCollections(): {
   [collectionID: string]: ICollection;
 } {
   return {
-    ...registerUI(),
     ...registerPost(),
     ...registerPages(),
+    ...registerCounter(),
+    ...registerEmployees(),
   };
 }
 

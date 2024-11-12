@@ -1,4 +1,5 @@
 "use client";
+import NoSSR from "@/common/NoSSR";
 import CRUDTable from "@/components/CRUD/CRUDTable";
 import { getCollectionMenuItem } from "@/lib/collections";
 
@@ -16,10 +17,12 @@ export default function CollectionPage(props: ICollectionPageProps) {
         <CRUDTable collectionID={props.collectionID} menuItem={menuItem} />
       )}
       {menuItem?.component && (
-        <menuItem.component
-          collectionID={props.collectionID}
-          pageID={props.pageID}
-        />
+        <NoSSR>
+          <menuItem.component
+            collectionID={props.collectionID}
+            pageID={props.pageID}
+          />
+        </NoSSR>
       )}
     </div>
   );

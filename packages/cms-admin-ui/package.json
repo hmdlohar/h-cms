@@ -13,7 +13,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@hcms/core": "*",
-    "@hcms/plugin-ui": "*",
+    "@hcms/plugin-employees": "file:../../builds/hcms-employees.tgz",
     "@hookform/resolvers": "^3.9.1",
     "@lexical/react": "^0.20.0",
     "@mui/icons-material": "^5.15.13",
