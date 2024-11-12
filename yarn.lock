@@ -2172,21 +2172,28 @@ hasown@^2.0.0, hasown@^2.0.1, hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-hcms-plugin-counter@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/hcms-plugin-counter/-/hcms-plugin-counter-1.0.2.tgz#b581af788b684e19af944a46986d664487b2d631"
-  integrity sha512-9U+sSVX3glIbkQnlA/PXVAd5ofed9vZrkqATdT28yUbdGk0NEePYSmcVvxSbpLz5aAQBWQD7q+YA01lgnwAqKw==
+hcms-core@latest:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/hcms-core/-/hcms-core-0.0.7.tgz#689e8f4e8727ae384b7c16e7ee47a3d37f678f94"
+  integrity sha512-T//CZWeMsiRUVeOBX61NhPbJEOCFrYnovcoK2uVDcVrQI+/dcVT+d5EgY3n9Fok7m/3eMxWLCRodeDJ+oS3ADw==
   dependencies:
-    hcms-core "^0.0.3"
+    knex "3.1.0"
+
+hcms-plugin-counter@latest:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/hcms-plugin-counter/-/hcms-plugin-counter-1.0.3.tgz#ab11c31f38636e7c6cb1b9a1be9c0b54a1d5e6fa"
+  integrity sha512-zE2Aeu3wwDaLb9GQGnxyVzPNIUWlnQDxWghlVR/bj8GT/799lgNI1/JfMAwZi8tN/F+gtAXN9TK7GNEx6Xgz5Q==
+  dependencies:
+    hcms-core latest
     knex "3.1.0"
     react "^18.3.1"
 
-hcms-plugin-employees@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/hcms-plugin-employees/-/hcms-plugin-employees-1.0.4.tgz#37dd392caef97a7431c94f66c21c85472733d51f"
-  integrity sha512-upnj3KrvWKdbPGcV1263yxwYT+F+353vz+OO3DDjqf1f4IpSmKETZB2kfqdHohjbQoYOTxw63U8XdMenpCAx1Q==
+hcms-plugin-employees@latest:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/hcms-plugin-employees/-/hcms-plugin-employees-1.0.5.tgz#0fd77ab763daa5b0b52462ffd12f3af1f2ed7a60"
+  integrity sha512-F/tJBFC5ZLp9zPPCADJj0RPloV74yWeHKrz2cUkJ3H7LqI8GMzMAEaGpxx9u47frdSz0VHTLaRfuXlhZEzvqqA==
   dependencies:
-    hcms-core "^0.0.3"
+    hcms-core latest
     knex "3.1.0"
     react "^18.3.1"
     rollup-plugin-dts "^6.1.1"
