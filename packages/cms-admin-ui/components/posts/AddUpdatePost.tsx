@@ -20,19 +20,19 @@ import { Case, Switch } from "react-if";
 import slugify from "slugify";
 import * as yup from "yup";
 
-interface IAddUpdatePageProps {
+interface IAddUpdatePostProps {
   isOpen: boolean;
   onClose: () => void;
   currentRow?: any;
   onComplete: () => void;
 }
-export default function AddUpdatePage(props: IAddUpdatePageProps) {
+export default function AddUpdatePost(props: IAddUpdatePostProps) {
   const action = useMutation({
     mutationFn: async (values: any) => {
       if (props.currentRow) {
-        await ClientSDK.update("page", props.currentRow.id, values);
+        await ClientSDK.update("post", props.currentRow.id, values);
       } else {
-        await ClientSDK.create("page", values);
+        await ClientSDK.create("post", values);
       }
       props.onComplete();
     },
@@ -62,7 +62,7 @@ export default function AddUpdatePage(props: IAddUpdatePageProps) {
         maxWidth="md"
       >
         <DialogTitle>
-          <div>{props.currentRow ? "Update" : "Add"} Page</div>
+          <div>{props.currentRow ? "Update" : "Add"} Post</div>
         </DialogTitle>
         <DialogContent>
           <form

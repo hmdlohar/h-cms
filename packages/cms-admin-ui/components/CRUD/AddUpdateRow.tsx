@@ -31,20 +31,9 @@ export default function AddUpdateRow(props: IAddUpdateRowProps) {
   const action = useMutation({
     mutationFn: async (values: any) => {
       if (props.currentRow) {
-        await ClientSDK.call({
-          collection: props.collectionID,
-          method: "update",
-          args: {
-            id: props.currentRow.id,
-            values,
-          },
-        });
+        await ClientSDK.update(props.collectionID, props.currentRow.id, values);
       } else {
-        await ClientSDK.call({
-          collection: props.collectionID,
-          method: "create",
-          args: values,
-        });
+        await ClientSDK.create(props.collectionID, values);
       }
       props.onComplete();
     },

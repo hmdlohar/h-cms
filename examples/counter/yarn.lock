@@ -1229,10 +1229,10 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-hcms-core@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/hcms-core/-/hcms-core-0.0.1.tgz#0e9f54bb14e1c9939f0850870a324a97f746dd9e"
-  integrity sha512-hejhOg5ne8mX70s9l9uALcA5sTGN+jbPjlTbelAAn0OuxYB4SU1zMgNGZMCjv+FyF8bNg614UxQA57TDjNCD+A==
+hcms-core@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/hcms-core/-/hcms-core-0.0.3.tgz#bc2531d7dec7c342493277a84cde0530251675dc"
+  integrity sha512-naQFgv1nsLitRf7E+9N1UG4onANnBB0Ac6DrGI3kW3GQ7Bjqa4UXSKnkDxFXZ6eJD4fI/YnQhgIsN9PJvLorqg==
   dependencies:
     knex "3.1.0"
 

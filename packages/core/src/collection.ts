@@ -25,7 +25,6 @@ export interface ICollectionMenuItem {
   label: string;
   icon?: any;
   component?: any;
-  type: "page" | "CRUDTable";
   CRUDSchema?: {
     columns: ICRUDColumn;
   };

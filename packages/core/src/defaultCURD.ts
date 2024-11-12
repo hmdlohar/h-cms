@@ -16,12 +16,8 @@ export function createDefaultCURD(tableName: string): {
       },
     },
     list: {
-      fn: async (db: Knex, args: { page: number; pageSize: number }) => {
-        return db
-          .select("*")
-          .from(tableName)
-          .limit(args.pageSize)
-          .offset((args.page - 1) * args.pageSize);
+      fn: async (db: Knex) => {
+        return db.select("*").from(tableName);
       },
     },
     create: {
@@ -34,10 +30,10 @@ export function createDefaultCURD(tableName: string): {
         db: Knex,
         args: {
           id: number;
-          data: any;
+          values: any;
         }
       ) => {
-        return db.update(args.data).from(tableName).where("id", args.id);
+        return db.update(args.values).table(tableName).where("id", args.id);
       },
     },
     delete: {

@@ -6,17 +6,17 @@ import { ClientSDK, ICollectionMenuItem } from "hcms-core";
 import { useQuery } from "@tanstack/react-query";
 import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
-import AddUpdatePage from "./AddUpdatePage";
+import AddUpdatePost from "./AddUpdatePost";
 
 interface IPageListProps {}
-export default function PageList(props: IPageListProps) {
+export default function PostList(props: IPageListProps) {
   const [currentRow, setCurrentRow] = useState<any>(null);
   const [open, setOpen] = useState(false);
 
   let q = useQuery({
-    queryKey: ["crud", "page", "list", "page"],
+    queryKey: ["crud", "post", "list", "post"],
     queryFn: async () => {
-      let result = await ClientSDK.list("page");
+      let result = await ClientSDK.list("post");
       return result ?? [];
     },
   });
@@ -30,7 +30,7 @@ export default function PageList(props: IPageListProps) {
           alignItems: "center",
         }}
       >
-        <h1>Pages</h1>
+        <h1>Posts</h1>
         <Button
           onClick={() => {
             setOpen(true);
@@ -67,7 +67,7 @@ export default function PageList(props: IPageListProps) {
                         "Are you sure you want to delete this item?"
                       )
                     ) {
-                      await ClientSDK.delete("page", row.id);
+                      await ClientSDK.delete("post", row.id);
                       q.refetch();
                     }
                   }}
@@ -88,7 +88,7 @@ export default function PageList(props: IPageListProps) {
         ]}
       />
       {open && (
-        <AddUpdatePage
+        <AddUpdatePost
           isOpen={open}
           onClose={() => setOpen(false)}
           currentRow={currentRow}

@@ -1,3 +1,4 @@
+import PostList from "@/components/posts/PostList";
 import { createDefaultCURD, ICollection } from "hcms-core";
 
 export function register(): { [collectionID: string]: ICollection } {
@@ -24,27 +25,8 @@ export function register(): { [collectionID: string]: ICollection } {
       menuItems: {
         list: {
           label: "All Posts",
-          type: "CRUDTable",
           icon: "article",
-          CRUDSchema: {
-            columns: {
-              title: {
-                type: "string",
-                label: "Title",
-                required: true,
-              },
-              slug: {
-                type: "string",
-                label: "Slug",
-                required: true,
-              },
-              bodyhtml: {
-                type: "richText",
-                label: "Content",
-                required: true,
-              },
-            },
-          },
+          component: PostList,
         },
       },
     },

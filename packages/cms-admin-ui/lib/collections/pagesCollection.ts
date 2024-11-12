@@ -25,7 +25,6 @@ export function register(): { [collectionID: string]: ICollection } {
       menuItems: {
         list: {
           label: "All Pages",
-          type: "page",
           icon: "description",
           component: PageList,
         },
