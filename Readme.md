@@ -172,6 +172,156 @@ yarn link "hcms-plugin-myplugin"
 - Publish to npm
 - Install via package manager
 
+## Using Plugins
+
+### 1. Installing Plugins
+
+Plugins can be installed in three ways:
+
+```bash
+# From NPM
+yarn add hcms-plugin-name
+
+# From GitHub
+yarn add github:username/hcms-plugin-name
+
+# Local development
+yarn link hcms-plugin-name
+```
+
+### 2. Registering Plugins
+
+In your admin UI project, register plugins in the `collections.ts` file:
+
+```javascript
+import { register as registerPages } from "./collections/pages";
+import { register as registerPosts } from "./collections/posts";
+import { register as registerEmployees } from "hcms-plugin-employees";
+import { register as registerCounter } from "hcms-plugin-counter";
+
+export const collections = {
+  ...registerPages(),
+  ...registerPosts(),
+  ...registerEmployees(),
+  ...registerCounter(),
+};
+```
+
+### 3. Running Migrations
+
+After adding new plugins, run migrations to set up the database:
+
+```bash
+# Development
+yarn migrate
+
+# Production migrations run automatically during deployment
+```
+
+### 4. Accessing Plugin Data
+
+#### Using Client SDK
+
+```javascript
+import { ClientSDK } from 'hcms-core';
+
+// List all items
+const items = await ClientSDK.call({
+  collection: 'employee',
+  method: 'list'
+});
+
+// Get single item
+const item = await ClientSDK.call({
+  collection: 'employee',
+  method: 'get',
+  args: { id: 1 }
+});
+
+// Create item
+const newItem = await ClientSDK.call({
+  collection: 'employee',
+  method: 'create',
+  args: {
+    name: 'John Doe',
+    email: 'john@example.com'
+  }
+});
+```
+
+#### Using React Hooks
+
+```javascript
+import { useQuery } from '@tanstack/react-query';
+import { ClientSDK } from 'hcms-core';
+
+function EmployeeList() {
+  const { data, isLoading } = useQuery({
+    queryKey: ['employees'],
+    queryFn: () => ClientSDK.call({
+      collection: 'employee',
+      method: 'list'
+    })
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <ul>
+      {data.map(employee => (
+        <li key={employee.id}>{employee.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+### 5. Using Custom Plugin Methods
+
+If a plugin provides custom methods, you can call them using the same pattern:
+
+```javascript
+// Using custom counter plugin methods
+const increaseCount = async () => {
+  await ClientSDK.call({
+    collection: 'counter',
+    method: 'increaseCount'
+  });
+};
+
+const getCount = async () => {
+  const result = await ClientSDK.call({
+    collection: 'counter',
+    method: 'getCount'
+  });
+  return result.count;
+};
+```
+
+### 6. Environment Configuration
+
+Some plugins might require environment variables. Add them to your `.env` file:
+
+```plaintext
+# Example plugin configuration
+HCMS_PLUGIN_EMPLOYEE_API_KEY=your_api_key
+HCMS_PLUGIN_EMPLOYEE_SECRET=your_secret
+```
+
+### 7. Plugin Updates
+
+To update plugins:
+
+```bash
+# Update specific plugin
+yarn upgrade hcms-plugin-name
+
+# Update all plugins
+yarn upgrade-interactive --latest
+```
+
+Remember to check the plugin's changelog for breaking changes and run migrations after updates.
+
 ## Built-in UI Components
 
 ### CRUD Table
